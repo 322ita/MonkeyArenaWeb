@@ -1,2 +1,0 @@
-# MonkeyArenaWeb
-monkeyarenawebgl
