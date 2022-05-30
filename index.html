@@ -1,121 +1,267 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
+<html style="font-size: 16px;"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Monkey Arena</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Monkey Arena</div>
-      </div>
-    </div>
-    <script>
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
-
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
-
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/test2.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/test2.data",
-        frameworkUrl: buildUrl + "/test2.framework.js",
-        codeUrl: buildUrl + "/test2.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "Nibbos production",
-        productName: "Monkey Arena",
-        productVersion: "1",
-        showBanner: unityShowBanner,
-      };
-
-      // By default Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
-
-      loadingBar.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      document.body.appendChild(script);
-    </script>
-  </body>
-</html>
+    <meta name="keywords" content="Monkey Arena"><meta name="description" content="">
+    <title></title>
+    <link rel="stylesheet" href="/nicepage.css" media="screen">
+    <script class="u-script" type="text/javascript" src="np://app.desktop.nicepage.com/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="np://app.desktop.nicepage.com/nicepage.js" defer=""></script>
+<meta name="generator" content="Nicepage 4.11.3, nicepage.com"></head>
+<body class="u-body u-xl-mode" data-style="blank" data-posts="" data-global-section-properties="{&quot;colorings&quot;:{&quot;light&quot;:[&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;],&quot;dark&quot;:[&quot;dark&quot;]}}" data-source="blank" data-page-sections-style="[]" data-page-coloring-types="{&quot;light&quot;:[&quot;clean&quot;],&quot;colored&quot;:[&quot;clean&quot;],&quot;dark&quot;:[&quot;dark&quot;]}" data-page-category="&quot;Basic&quot;"><section class="u-clearfix u-palette-3-base u-block-7fe6-1" custom-posts-hash="[]" data-style="blank" data-section-properties="{&quot;margin&quot;:&quot;none&quot;,&quot;stretch&quot;:true}" id="carousel_faf4" data-source="functional_fix" data-id="7fe6">
+  
+<div class="u-clearfix u-sheet u-valign-middle u-block-7fe6-15"><div class="u-clearfix u-expanded-width u-layout-wrap u-block-7fe6-3"><div class="u-gutter-0 u-layout">  <div class="u-layout-row">
+  <div class="u-align-center-sm u-align-center-xs u-align-justify-lg u-align-justify-md u-align-left-xl u-container-style u-layout-cell u-size-60 u-block-7fe6-4"><div class="u-container-layout u-block-7fe6-5"><h2 class="u-text u-text-default u-block-7fe6-13">Monkey Arena</h2><p class="u-custom-font u-font-pt-sans u-text u-text-default u-text-palette-3-light-3 u-block-7fe6-10">MA è un gioco creato da 2 studenti del deffenu di prima perché ne avevano voglia, questo gioco è tipo fall guys, crab game strumble guys, insomma avete capito -_-<br>il gioco è ancora in sviluppo ed è pieno di bug : /<br>per esempio mette solo al player locale pronto e anche se lo mette un altro non lo mostra.</p><a href="https://github.com/322ita/MonkeyArenaWeb/tree/main/Build" class="u-active-palette-1-base u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius-5 u-text-active-white u-text-hover-white u-text-palette-3-base u-white u-block-7fe6-25">DOWNLOAD<br></a></div></div></div></div></div></div><style data-mode="XL" data-visited="true">@media (min-width: 1200px) {
+  .u-block-7fe6-1 {
+    background-image: none;
+  }
+  .u-block-7fe6-15 {
+    min-height: 725px;
+  }
+  .u-block-7fe6-3 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .u-block-7fe6-4 {
+    min-height: 605px;
+  }
+  .u-block-7fe6-5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .u-block-7fe6-13 {
+    font-size: 3rem;
+    margin-top: 115px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-7fe6-10 {
+    font-size: 1.25rem;
+    margin-top: 36px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-7fe6-25 {
+    background-image: none;
+    border-style: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 49px;
+  }
+}</style><style data-mode="LG" data-visited="true">@media (max-width: 1199px) and (min-width: 992px) {
+  .u-block-7fe6-1 {
+    background-image: none;
+  }
+  .u-block-7fe6-15 {
+    min-height: 619px;
+  }
+  .u-block-7fe6-3 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .u-block-7fe6-4 {
+    min-height: 582px;
+  }
+  .u-block-7fe6-5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .u-block-7fe6-13 {
+    font-size: 3rem;
+    margin-top: 115px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-7fe6-10 {
+    font-size: 1.25rem;
+    margin-top: 36px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-7fe6-25 {
+    background-image: none;
+    border-style: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 60px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 49px;
+  }
+}</style><style data-mode="MD" data-visited="true">@media (max-width: 991px) and (min-width: 768px) {
+  .u-block-7fe6-1 {
+    background-image: none;
+  }
+  .u-block-7fe6-15 {
+    min-height: 220px;
+  }
+  .u-block-7fe6-3 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .u-block-7fe6-4 {
+    min-height: 100px;
+  }
+  .u-block-7fe6-5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-7fe6-13 {
+    margin-top: 115px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+    font-size: 3rem;
+  }
+  .u-block-7fe6-10 {
+    font-size: 1.25rem;
+    margin-top: 36px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-7fe6-25 {
+    background-image: none;
+    border-style: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 60px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 49px;
+  }
+}</style><style data-mode="SM" data-visited="true">@media (max-width: 767px) and (min-width: 576px) {
+  .u-block-7fe6-1 {
+    background-image: none;
+  }
+  .u-block-7fe6-15 {
+    min-height: 320px;
+  }
+  .u-block-7fe6-3 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .u-block-7fe6-4 {
+    min-height: 100px;
+  }
+  .u-block-7fe6-5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-7fe6-13 {
+    font-size: 3rem;
+    margin-top: 115px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-7fe6-10 {
+    font-size: 1.25rem;
+    width: auto;
+    margin-top: 36px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-7fe6-25 {
+    background-image: none;
+    border-style: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 49px;
+  }
+}</style><style data-mode="XS" data-visited="true">@media (max-width: 575px) {
+  .u-block-7fe6-1 {
+    background-image: none;
+  }
+  .u-block-7fe6-15 {
+    min-height: 320px;
+  }
+  .u-block-7fe6-3 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .u-block-7fe6-4 {
+    min-height: 100px;
+  }
+  .u-block-7fe6-5 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-7fe6-13 {
+    font-size: 1.875rem;
+    margin-top: 115px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-7fe6-10 {
+    font-size: 1.25rem;
+    margin-top: 36px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: auto;
+  }
+  .u-block-7fe6-25 {
+    background-image: none;
+    border-style: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 60px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 49px;
+  }
+}</style></section>
+</body></html>
